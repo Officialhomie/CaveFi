@@ -19,7 +19,7 @@ export interface Proposal {
   metadata?: Record<string, any>;
 }
 
-export class  ProposalCodec implements ContentCodec<Proposal> {
+export class  ProposalCodec implements ContentCodec<Proposal> { // Class 'ProposalCodec' incorrectly implements interface 'ContentCodec<Proposal>'. Property 'shouldPush' is missing in type 'ProposalCodec' but required in type 'ContentCodec<Proposal>'.ts(2420)
   get contentType(): ContentTypeId {
     return ContentTypeProposal;
   }
@@ -64,7 +64,7 @@ export interface Vote {
   timestamp: Date;
 }
 
-export class VoteCodec implements ContentCodec<Vote> {
+export class VoteCodec implements ContentCodec<Vote> { // Class 'VoteCodec' incorrectly implements interface 'ContentCodec<Vote>'. Property 'shouldPush' is missing in type 'VoteCodec' but required in type 'ContentCodec<Vote>'.ts(2420)
   get contentType(): ContentTypeId {
     return ContentTypeVote;
   }

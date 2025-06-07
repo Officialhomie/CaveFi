@@ -20,14 +20,15 @@ export const useXMTP = () => {
           getAddress: () => address,
           signMessage: async (message: string) => {
             // Implement wallet signing
-            return await window.ethereum.request({
+            return await window.ethereum.request({ // Property 'ethereum' does not exist on type 'Window & typeof globalThis'.ts(2339)
+
               method: 'personal_sign',
               params: [message, address],
             });
           },
         };
 
-        const manager = new XMTPManager(signer);
+        const manager = new XMTPManager(signer); // Argument of type '{ getAddress: () => `0x${string}`; signMessage: (message: string) => Promise<any>; }' is not assignable to parameter of type 'Signer'.
         await manager.initialize();
         setXMTPManager(manager);
         setIsReady(true);

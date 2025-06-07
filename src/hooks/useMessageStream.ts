@@ -52,11 +52,11 @@ export const useMessageStream = (groupId?: string) => {
       try {
         const client = await xmtpManager.initialize();
         const stream = groupId 
-          ? await client.conversations.getConversationById(groupId).then(c => c.streamMessages())
+          ? await client.conversations.getConversationById(groupId).then(c => c.streamMessages()) // Property 'streamMessages' does not exist on type 'Group<string | GroupUpdated> | Dm<string | GroupUpdated>'.
           : await client.conversations.streamAllMessages();
 
         for await (const message of stream) {
-          if (message.senderAddress !== client.address) {
+          if (message.senderAddress !== client.address) { // Property 'address' does not exist on type 'Client<string | GroupUpdated>'.ts(2339)
             processMessage(message);
           }
         }

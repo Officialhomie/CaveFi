@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { castVote } from '@/app/actions/proposals';
-import { useSupabaseRealtime } from '@/hooks/useSupabaseRealtime';
+import { useSupabaseRealtime } from '@/hooks/useSupabaseRealtime'; // Cannot find module '@/hooks/useSupabaseRealtime' or its corresponding type declarations.ts(2307)
 
 interface ProposalCardProps {
   proposal: {
@@ -50,7 +50,7 @@ export function ProposalCard({ proposal, userVote }: ProposalCardProps) {
     return acc;
   }, {}) || {};
 
-  const totalVotes = Object.values(voteCounts).reduce((sum: number, count: number) => sum + count, 0);
+  const totalVotes = Object.values(voteCounts).reduce((sum: number, count: number) => sum + count, 0); // 
   const isExpired = new Date(proposal.voting_deadline) < new Date();
 
   return (
@@ -67,7 +67,7 @@ export function ProposalCard({ proposal, userVote }: ProposalCardProps) {
       <div className="space-y-3">
         {proposal.options.map((option, index) => {
           const voteCount = voteCounts[index] || 0;
-          const percentage = totalVotes > 0 ? (voteCount / totalVotes) * 100 : 0;
+          const percentage = totalVotes > 0 ? (voteCount / totalVotes) * 100 : 0; // 'totalVotes' is of type 'unknown'.ts(18046)
           const isSelected = selectedOption === index;
 
           return (
@@ -107,7 +107,7 @@ export function ProposalCard({ proposal, userVote }: ProposalCardProps) {
       </div>
 
       <div className="mt-4 flex justify-between items-center text-sm text-gray-500">
-        <span>Total votes: {totalVotes}</span>
+        <span>Total votes: {totalVotes}</span> {/* 'totalVotes' is of type 'unknown'.ts(18046) */}
         <span>
           Deadline: {new Date(proposal.voting_deadline).toLocaleDateString()}
           {isExpired && <span className="text-red-500 ml-2">(Expired)</span>}
